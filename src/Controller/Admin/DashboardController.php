@@ -9,8 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\CrudUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use  App\Controller\Admin\ConferenceCrudController;
-use  App\Controller\Admin\CommentCrudController;
+use App\Controller\Admin\ConferenceCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 
 class DashboardController extends AbstractDashboardController
@@ -20,18 +19,11 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        return parent::index();
         // redirect to some CRUD controller
 
         $routeBuilder = $this->get(AdminUrlGenerator::class);
-//
-        return $this->redirect($routeBuilder->setController(CommentCrudController::class)->generateUrl());
+        return $this->redirect($routeBuilder->setController(ConferenceCrudController::class)->generateUrl());
 
-//пункт 9,1 у меня не работает он deprecated
-//        $routeBuilder = $this->get(CrudUrlGenerator::class)->build();
-//        $url = $routeBuilder->setController(ConferenceCrudController::class)->generateUrl();
-//
-//        return $this->redirect($url);
     }
 
     public function configureDashboard(): Dashboard
