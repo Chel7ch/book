@@ -36,9 +36,9 @@ class CommentCrudController extends AbstractCrudController
             ->add(EntityFilter::new('conference'));
     }
 
+
     public function configureFields(string $pageName): iterable
     {
-
         yield AssociationField::new('conference');
         yield TextField::new('author');
         yield EmailField::new('email');

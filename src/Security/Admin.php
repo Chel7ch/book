@@ -1,44 +1,20 @@
 <?php
 
-namespace App\Entity;
+namespace App\Security;
 
-use App\Repository\AdminRepository;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-/**
- * @ORM\Entity(repositoryClass=AdminRepository::class)
- */
 class Admin implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     */
     private $username;
 
-    /**
-     * @ORM\Column(type="json")
-     */
     private $roles = [];
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
      */
     private $password;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     /**
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
@@ -53,11 +29,6 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
         $this->username = $username;
 
         return $this;
-    }
-
-    public function __toString(): string
-    {
-        return $this->username;
     }
 
     /**
